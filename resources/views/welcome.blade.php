@@ -21,12 +21,12 @@
 
                     <div class="input-field">
                         <i class="fa-solid fa-user"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="email" placeholder="Email" id="email">
                     </div>
 
                     <div class="input-field">
                         <i class="fa-solid fa-user"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Password" id="password">
                     </div>
 
                     <p>Lost Password <a href="#">Click Here!</a></p>
@@ -38,10 +38,6 @@
             </form>
         </div>
     </div>
-    <script>
-        
-    </script>
-
 <script>
 
 let signupBtn = document.getElementById("signupBtn");
@@ -65,6 +61,33 @@ signupBtn.onclick = function(){
     signinBtn.classList.add("disable");
 
 }
+
+signinBtn.addEventListener('click', function(){
+let email = document.getElementById('email').value;
+let password = document.getElementById('password').value;
+    const postapi=`api/login`;
+    fetch(postapi, {
+        method:'POST',
+        body: JSON.stringify({
+            email: email,
+            password: password,
+        }),
+        headers:{
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+    .then(res => {
+        if (res.status == true) {
+            window.location.href = '/dashboard';
+            alert('LogIn naka Buanga Ka');
+        } else {
+           
+        alert('Invalid credentials'); 
+        }
+
+    })
+});
 
 </script>
 </body>

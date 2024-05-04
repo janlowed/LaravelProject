@@ -1,4 +1,4 @@
-<body>
+{{-- <body>
 
     <nav class="navbar">
         <ul>
@@ -8,4 +8,4 @@
             <li><a href="#logout">Logout</a></li>
         </ul>
     </nav>
-
+ --}}

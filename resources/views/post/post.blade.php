@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <title>Posts</title>
+    <link rel="stylesheet" href="assets/css/post.css">
 </head>
 <body>
     <div class="main-sidebar">
@@ -18,7 +18,6 @@
                         <a href="#" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
                     </li>
                     <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Users</span></a></li>
-                    <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Posts</span></a></li>
                     <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Logout</span></a></li>
                 </ul>
             </aside>
@@ -42,14 +41,14 @@
                     </thead>
                     <tbody id="tablebody">
                       <tr>
-                        {{-- <td>1</td>
+                        <td>1</td>
                         <td>John loyd</td>
                         <td>Zamora</td>
                         <td>johnloyd@gmail.com</td>
                         <td>
                             <button class="btn btn-warning btn-sm">Edit</button>
                             <button class="btn btn-danger btn-sm">Delete</button>
-                        </td> --}}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -93,5 +92,4 @@
         </script>
 
 </html>
-
-
+ --}}
