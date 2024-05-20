@@ -26,6 +26,7 @@
                     </li>
                     <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Users</span></a></li>
                     <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Posts</span></a></li>
+                    <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Profile</span></a></li>
                     <li><a class="nav-link" onclick="logout()"><i data-feather="grid"></i><span>Logout</span></a></li>
                 </ul>
             </aside>

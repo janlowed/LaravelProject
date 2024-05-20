@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Janlowed</title>
     <link rel="stylesheet" href="assets/style.css">
     <script src="https://kit.fontawesome.com/c4254e24aB.js" crossorigin="anonymous"></script>
 </head>
