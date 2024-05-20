@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -11,19 +12,45 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        if (Auth::attempt($request->only(['email', 'password']))) {
-            // $token = auth()->user()->createToken('token');
+        try {
+        $credentials = $request->only(['email', 'password']);
+        if (Auth::attempt($credentials)) {
+
+            // $request->session()->regenerate();
+            // $request->session()->put('user_email', Auth::user()->email);
+            // $request->session()->put('user_password', Auth::user()->password);
+            $token = auth()->user()->createToken('token');
             return response()->json([
                 'status' => true,
                 'message' => 'Login Successful',
                 // 'access_token' => $token->plainTextToken,
                 'user' => auth()->user(),
             ], 200);
-        } else {
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid Credentials',
-            ], 401);
+        }
+        
+        } catch (\Throwable $th) {
+            return [
+                'status' => 500,
+                'message' => $th->getMessage()
+            ];
+        }
+        
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            Session::flush();
+
+            return [
+                'status' => 200,
+                'message' => 'Successfully Log Out'
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'status' => 500,
+                'message' => '$th->getMessage'
+            ];
         }
     }
     public function getAll(Request $request)

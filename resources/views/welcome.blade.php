@@ -3,92 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project</title>
+    <title>Sign In</title>
     <link rel="stylesheet" href="assets/style.css">
     <script src="https://kit.fontawesome.com/c4254e24aB.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
     <div class="container">
         <div class="form-box">
-            <h1 id="title">Sign Up</h1>
+            <h1 id="title">Sign In</h1>
             <form action="#">
                 <div class="input-group">
-                    <div class="input-field" id="nameField">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Name">
-                    </div>
-
                     <div class="input-field">
                         <i class="fa-solid fa-user"></i>
                         <input type="email" placeholder="Email" id="email">
                     </div>
 
                     <div class="input-field">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-lock"></i>
                         <input type="password" placeholder="Password" id="password">
                     </div>
 
-                    <p>Lost Password <a href="#">Click Here!</a></p>
                 </div>
                 <div class="btn-field">
-                    <button type="button" id="signupBtn">Sign Up</button>
-                    <button type="button" id="signinBtn" class="disable">Sign In</button>
+                    <button type="button" id="signinBtn">Log In</button>
                 </div>
             </form>
         </div>
     </div>
 <script>
+document.addEventListener('DOMContentLoaded', function(){
+    function sendmessage(){
+        const apikey = "{{ config('services.semaphore_key.key') }}"; 
+        const number = "09639623877"; 
+        const message = "You logged in successfully!"; 
 
-let signupBtn = document.getElementById("signupBtn");
-let signinBtn = document.getElementById("signinBtn");
-let nameField = document.getElementById("nameField");
-let title = document.getElementById("title");
+        const parameters = {
+            apikey: apikey,
+            number: number,
+            message: message,
+        };
 
+        fetch('https://api.semaphore.co/api/v4/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(parameters)
+        })
+        .then(response => response.text())
+        .then(output => {
+            console.log(output);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
 
-signinBtn.onclick = function(){
-    nameField.style.maxHeight = "0";
-    title.innertHTML = "Sign In";
-    signupBtn.classList.add("disable");
-    signinBtn.classList.remove("disable");
+    let signinBtn = document.getElementById("signinBtn");
 
-}
-
-signupBtn.onclick = function(){
-    nameField.style.maxHeight = "60px";
-    title.innertHTML = "Sign Up";
-    signupBtn.classList.remove("disable");
-    signinBtn.classList.add("disable");
-
-}
-
-signinBtn.addEventListener('click', function(){
-let email = document.getElementById('email').value;
-let password = document.getElementById('password').value;
-    const postapi=`api/login`;
-    fetch(postapi, {
-        method:'POST',
-        body: JSON.stringify({
-            email: email,
-            password: password,
-        }),
-        headers:{
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        }
-    }).then(res => res.json())
-    .then(res => {
-        if (res.status == true) {
-            window.location.href = '/dashboard';
-            alert('LogIn naka Buanga Ka');
-        } else {
-           
-        alert('Invalid credentials'); 
-        }
-
-    })
+    signinBtn.addEventListener('click', function(){
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+        const postapi = `api/login`;
+        
+        fetch(postapi, {
+            method: 'POST',
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(res => {
+            if (res.status == true) {
+                alert('You Log In Successfully!');
+                sendmessage(); // Send message on successful login
+                window.location.href = `/dashboard`;
+            } else {
+                alert('Invalid credentials'); 
+            }
+            console.log(res);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
 });
-
 </script>
 </body>
 </html>

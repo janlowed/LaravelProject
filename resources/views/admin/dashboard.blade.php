@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script>
+        $token = localStorage.getItem('token');
+
+        if(!token) {
+            window.location.href = '/';
+        }
+    </script>
 </head>
 <body>
     <div class="main-sidebar">
@@ -19,7 +26,7 @@
                     </li>
                     <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Users</span></a></li>
                     <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Posts</span></a></li>
-                    <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Logout</span></a></li>
+                    <li><a class="nav-link" onclick="logout()"><i data-feather="grid"></i><span>Logout</span></a></li>
                 </ul>
             </aside>
         </div>
@@ -42,14 +49,7 @@
                     </thead>
                     <tbody id="tablebody">
                       <tr>
-                        {{-- <td>1</td>
-                        <td>John loyd</td>
-                        <td>Zamora</td>
-                        <td>johnloyd@gmail.com</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </td> --}}
+                        
                       </tr>
                     </tbody>
                   </table>
@@ -78,11 +78,11 @@
                           <td>${data[i].email}</td> 
                           <td>
                             <button class="edit-button">
-                                <i class="fas fa-edit"></i> <!-- Font Awesome edit icon -->
+                                <i class="fas fa-edit"></i>
                             </button>
     
                             <button class="delete-button">
-                                <i class="fas fa-trash-alt"></i> <!-- Font Awesome delete icon -->
+                                <i class="fas fa-trash-alt"></i
                             </button>
                         </td>       
                        `;
@@ -94,4 +94,4 @@
 
 </html>
 
-
+@include('layouts.footer')
