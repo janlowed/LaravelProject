@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script src="assets/sweetalert.min.js"></script>
     <script>
         $token = localStorage.getItem('token');
 

@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'John Loyd',
             'last_name' => 'Zamora',
             'email' => 'jl.zamora@gmail.com',
+            'address' =>'Barangay Liberty Hilongos, Leyte',
+            'dob' => 'June 23, 2003',
+            'age' => '20',
+            'gender' => 'Male',
             'password' => Hash::make('123454321')
         ]);
     }
