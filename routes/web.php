@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
+Route::get('/verifyOtp', function () {
+    return view('verifyOtp');
+});

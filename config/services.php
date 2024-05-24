@@ -31,8 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'semaphore_key' => [
-        'key' => env('SEMAPHORE_API_KEY')
+    'semaphore' => [
+        'key' => env('SEMAPHORE_API_KEY'),
+        'uri' => env('SEMAPHORE_URI'),
     ]
 ];
 

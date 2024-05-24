@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
-    <script src="assets/sweetalert.min.js"></script>
+    
     <script>
-        $token = localStorage.getItem('token');
+        let token = localStorage.getItem('tokenSaBuang');
 
         if(!token) {
             window.location.href = '/';
@@ -28,7 +28,7 @@
                     <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Users</span></a></li>
                     <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Posts</span></a></li>
                     <li><a class="nav-link" href="#"><i data-feather="grid"></i><span>Profile</span></a></li>
-                    <li><a class="nav-link" onclick="logout()"><i data-feather="grid"></i><span>Logout</span></a></li>
+                    <li><a class="nav-link" onclick="logoutFunction()"><i data-feather="grid"></i><span>Logout</span></a></li>
                 </ul>
             </aside>
         </div>
@@ -58,12 +58,33 @@
             </section>
             </div>
         </div>
-        </main>
-        </body>
-    </html>
-        <script>
-            const getAllapi='api/getAll';
-        fetch(getAllapi)
+    </main>
+
+<script>
+    function logoutFunction() {
+        swal({
+                title: "Are you sure?",
+                text: "You will be logged out!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willLogout) => {
+                if (willLogout) {
+                    // Perform the logout operation (replace with actual logout logic)
+                    localStorage.removeItem('tokenSaBuang');  
+                    swal("Logged out successfully!", {
+                        icon: "success",
+                    }).then(() => {
+                        // Redirect to login page or perform other actions
+                        window.location.href = `/`; // Example redirection after logout
+                    });
+                }
+            });
+    }
+
+    const getAllapi='api/getAll';
+    fetch(getAllapi)
     .then(res => res.json())
     .then(data => {
         console.log(data);
@@ -94,6 +115,9 @@
     .catch(error => console.error('error', error));
         </script>
 
+<script src="assets/sweetalert/sweetalert.min.js"></script>
+</body>      
 </html>
 
 @include('layouts.footer')
+

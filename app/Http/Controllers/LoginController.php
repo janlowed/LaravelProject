@@ -56,21 +56,32 @@ class loginController extends Controller
                 'otp_code' => $code,
             ]);
 
-        Mail::to($user->email)->send(new NewUserMail());
+            // Http::withoutVerifying()->post(env('SEMAPHORE_URI'), [
+            //     'apikey' => env('SEMAPHORE_API_KEY'),
+            //     'number' => env('SMS_NUMBER'),
+            //     'message' => 'Your otp code is '. $code,
+            // ]);
 
-            if ($updateResult) {
-                return response()->json([
-                    'status' => true,
-                    'message' => 'OTP sent successfully',
-                    'code' => $code,
-                    'token' => $user->createToken("API TOKEN")->plainTextToken
-                ], 200);
-            } else {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Failed to send OTP',
-                ], 500); 
-            }
+            return response()->json([
+                'status' => true,
+                'message' => 'Valid Data'
+            ]);
+
+        // Mail::to($user->email)->send(new NewUserMail());
+
+        //     if ($updateResult) {
+        //         return response()->json([
+        //             'status' => true,
+        //             'message' => 'OTP sent successfully',
+        //             'code' => $code,
+        //             'token' => $user->createToken("API TOKEN")->plainTextToken
+        //         ], 200);
+        //     } else {
+        //         return response()->json([
+        //             'status' => false,
+        //             'message' => 'Failed to send OTP',
+        //         ], 500); 
+        //     }
 
 
         } catch (\Throwable $th) {
@@ -85,7 +96,7 @@ class loginController extends Controller
     {
         try {
             $validateOTP = Validator::make($request->all(), [
-                'otp_code' => 'required|digits:6' 
+                'otp_code' => 'required|min:6' 
             ]);
 
             if($validateOTP->fails()){

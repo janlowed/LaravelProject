@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Janlowed</title>
     <link rel="stylesheet" href="assets/style.css">
-    <script src="https://kit.fontawesome.com/c4254e24aB.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -32,32 +31,32 @@
     </div>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
-    function sendmessage(){
-        const apikey = "{{ config('services.semaphore_key.key') }}"; 
-        const number = "09639623877"; 
-        const message = "You logged in successfully!"; 
+    // function sendmessage(){
+    //     const apikey = "{{ config('services.semaphore_key.key') }}"; 
+    //     const number = "09639623877"; 
+    //     const message = "You logged in successfully!"; 
 
-        const parameters = {
-            apikey: apikey,
-            number: number,
-            message: message,
-        };
+    //     const parameters = {
+    //         apikey: apikey,
+    //         number: number,
+    //         message: message,
+    //     };
 
-        fetch('https://api.semaphore.co/api/v4/messages', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: new URLSearchParams(parameters)
-        })
-        .then(response => response.text())
-        .then(output => {
-            console.log(output);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    }
+    //     fetch('https://api.semaphore.co/api/v4/messages', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/x-www-form-urlencoded'
+    //         },
+    //         body: new URLSearchParams(parameters)
+    //     })
+    //     .then(response => response.text())
+    //     .then(output => {
+    //         console.log(output);
+    //     })
+    //     .catch(error => {
+    //         console.error(error);
+    //     });
+    // }
 
     let signinBtn = document.getElementById("signinBtn");
 
@@ -73,19 +72,48 @@ document.addEventListener('DOMContentLoaded', function(){
                 password: password,
             }),
             headers: {
-                Accept: 'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
         .then(res => {
-            if (res.status == true) {
-                alert('You Log In Successfully!');
-                sendmessage(); // Send message on successful login
-                window.location.href = `/dashboard`;
+            // if (res.status == true) {
+            //     alert('You Log In Successfully!');
+            //     sendmessage(); // Send message on successful login
+            //     window.location.href = `/dashboard`;
+            // } else {
+            //     alert('Invalid credentials'); 
+            // }
+            console.log(res.status);
+            if (res.status == false) {
+                swal({
+                        title: "Error!",
+                        text: "Invalid credentials",
+                        icon: "error",
+                        button: "OK",
+                    });
+            } else if (res.status == true) {
+                localStorage.setItem('status', res.status);
+
+                swal({
+                        title: "Welcome!",
+                        text: "You have successfully logged in.",
+                        icon: "success",
+                        button: "OK",
+                    }).then(() => {
+                        window.location.href = `/verifyOtp`;
+                    });
+
             } else {
-                alert('Invalid credentials'); 
+                swal({
+                        title: "Error!",
+                        text: "Something went wrong",
+                        icon: "error",
+                        button: "OK",
+                    });
             }
-            console.log(res);
+
+
         })
         .catch(error => {
             console.error('Error:', error);
@@ -93,5 +121,8 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 });
 </script>
+
+
+<script src="assets/sweetalert/sweetalert.min.js"></script>
 </body>
 </html>
