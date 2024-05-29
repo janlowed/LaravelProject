@@ -73,7 +73,7 @@
             }).then(res => res.json())
             .then(res => {
                 if (res.status != true) {
-                    alert('Invalid OTP')
+                    alert('Uy pataka!')
                 } else {
                     localStorage.setItem('tokenSaBuang', res.token);
                     localStorage.removeItem('status');

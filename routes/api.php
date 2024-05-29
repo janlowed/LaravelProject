@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,13 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('login',[loginController::class,'login']);
 Route::post('verifyOTP',[loginController::class,'verifyOTP']);
+Route::post('createUser', [loginController::class, 'createUser']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::middleware('auth:sanctum')->group(function(){
-//     Route::get('/getAll', [AuthController::class, 'getAll']);
-// });
-
-// Route::post('/login', [AuthController::class, 'login']);
 Route::get('/getAll', [AuthController::class, 'getAll']);

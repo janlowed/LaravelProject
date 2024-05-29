@@ -56,9 +56,9 @@ class loginController extends Controller
                 'otp_code' => $code,
             ]);
 
-            // Http::withoutVerifying()->post(env('SEMAPHORE_URI'), [
+            // Http::asForm()->post('https://api.semaphore.co/api/v4/messages', [
             //     'apikey' => env('SEMAPHORE_API_KEY'),
-            //     'number' => env('SMS_NUMBER'),
+            //     'number' => 09639623877,
             //     'message' => 'Your otp code is '. $code,
             // ]);
 
@@ -67,21 +67,19 @@ class loginController extends Controller
                 'message' => 'Valid Data'
             ]);
 
-        // Mail::to($user->email)->send(new NewUserMail());
-
-        //     if ($updateResult) {
-        //         return response()->json([
-        //             'status' => true,
-        //             'message' => 'OTP sent successfully',
-        //             'code' => $code,
-        //             'token' => $user->createToken("API TOKEN")->plainTextToken
-        //         ], 200);
-        //     } else {
-        //         return response()->json([
-        //             'status' => false,
-        //             'message' => 'Failed to send OTP',
-        //         ], 500); 
-        //     }
+            if ($updateResult) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'OTP sent successfully',
+                    'code' => $code,
+                    'token' => $user->createToken("API TOKEN")->plainTextToken
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Failed to send OTP',
+                ], 500); 
+            }
 
 
         } catch (\Throwable $th) {
@@ -132,6 +130,54 @@ class loginController extends Controller
             ], 500);
         }
     }
+    public function createUser(Request $request)
+    {
+        try {
+            //Validated
+            $validateUser = Validator::make($request->all(), 
+            [
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required',
+                'address' => 'required',
+
+            ]);
+
+            if($validateUser->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validateUser->errors()
+                ], 401);
+            }
+            $password = $request->input('password');
+
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'address' => $request->address,
+
+                'password' => Hash::make($request->password),
+            ]);
+
+            Mail::to($user->email)->send(new NewUserMail($user, $password));
+
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Created Successfully',
+                'token' => $user->createToken("API TOKEN")->plainTextToken
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 
     public function profile(){
         return view ('profile.index');
@@ -146,4 +192,7 @@ public function users(){
     return view('users.index');
 
 }
- }
+public function dashboard(){
+        return view('dashboard');
+}
+}

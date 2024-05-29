@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('address');
-            $table->string('gender');
-            $table->string('age');
+            $table->string('address')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('age')->nullable();
             $table->string('otp_code')->nullable();
-            $table->string('dob');
+            $table->string('dob')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

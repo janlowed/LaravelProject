@@ -1,0 +1,84 @@
+/* Container styling */
+.User {
+    padding: 20px;
+}
+
+.User h2 {
+    margin-bottom: 20px;
+}
+
+/* Table styling */
+.table-section {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+/* Button styling */
+.add-user-button,
+.edit-button,
+.delete-button {
+    display: inline-block;
+    margin: 0.25rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.add-user-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.add-user-button:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.edit-button {
+    background-color: #ffc107;
+    color: black;
+}
+
+.edit-button:hover {
+    background-color: #e0a800;
+    color: black;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+    color: white;
+}
+
+.edit-button i,
+.delete-button i {
+    margin-right: 0.5rem;
+}

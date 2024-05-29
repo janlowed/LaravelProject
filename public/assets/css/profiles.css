@@ -1,0 +1,67 @@
+/* Container styling */
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Profile info section styling */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Profile picture styling */
+.profile-picture {
+    margin-bottom: 20px;
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+}
+
+/* Profile details styling */
+.profile-details {
+    width: 100%;
+    text-align: left;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.profile-details p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.profile-details strong {
+    color: #343a40;
+}
+
+/* Edit button styling */
+#edtBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#edtBtn:hover {
+    background-color: #0056b3;
+}
