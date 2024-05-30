@@ -5,7 +5,7 @@
 <head>
     <title>Create User</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/create.css">
+    <link rel="stylesheet" href="assets/css/usercreate.css">
 </head>
 <body>
 <div class="container">
@@ -52,9 +52,9 @@
         }).then(response => {
             return response.json();
     }).then(data => {
-         console.log(data);
-         if(data.message == "User Created Succesfully"){
-            window.location.href="/user";
+         console.log(data.message);
+         if(data.message == "User Created Successfully"){
+            window.location.href="/users";
          }
     }).catch(error => console.error('Error:', error));
 });

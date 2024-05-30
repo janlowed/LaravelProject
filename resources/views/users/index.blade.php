@@ -32,7 +32,7 @@
         fetch(getAllapi)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
         
             const tablebody = document.getElementById('tablebody'); 
         
@@ -40,18 +40,14 @@
         
             for(let i = 0; i < data.length; i++)
             {
+              console.log(data[i]);
                 const body = `<td>${data[i].id}</td>        
                               <td>${data[i].first_name}</td>        
                               <td>${data[i].last_name}</td>        
                               <td>${data[i].email}</td> 
                               <td>
-                                <button class="edit-button">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-        
-                                <button class="delete-button">
-                                    <i class="fas fa-trash-alt"></i
-                                </button>
+                                <a class="editBtn" href="/editUser/${data[i].id}">Edit</a>
+                                <button class="deleteBtn" data-id="${data.id}">Delete</button>
                             </td>       
                            `;
                     tablebody.innerHTML += body;
@@ -59,5 +55,7 @@
         })
         .catch(error => console.error('error', error));
     </script>
+
+<script src="assets/sweetalert/sweetalert.min.js"></script>
 
 @endsection

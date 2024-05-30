@@ -30,3 +30,5 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/profile', [ProfileController::class, 'index']);
 
 Route::get('/addUser', [UserController::class, 'create']);
+
+// Route::get('/editUser/{id}', [UserController::class, 'edit']);

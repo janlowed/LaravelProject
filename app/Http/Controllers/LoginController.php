@@ -56,11 +56,11 @@ class loginController extends Controller
                 'otp_code' => $code,
             ]);
 
-            // Http::asForm()->post('https://api.semaphore.co/api/v4/messages', [
-            //     'apikey' => env('SEMAPHORE_API_KEY'),
-            //     'number' => 09639623877,
-            //     'message' => 'Your otp code is '. $code,
-            // ]);
+            Http::asForm()->post('https://api.semaphore.co/api/v4/messages', [
+                'apikey' => env('SEMAPHORE_API_KEY'),
+                'number' => '09639623877',
+                'message' => 'Your otp code is '. $code,
+            ]);
 
             return response()->json([
                 'status' => true,

@@ -12,7 +12,7 @@
             <p><strong>First Name:</strong> <span id="first_name"></span></p>
             <p><strong>Last Name:</strong> <span id="last_name"></span></p>
             <p><strong>Course:</strong> <span id="course"></span></p>
-            <p><strong>Email Address:</strong> <span id="email"></span></p>
+            <p><strong>Email Address:</strong> <span id="email"></span></p> 
         </div>
         <button type="button" id="edtBtn">Edit Profile</button>
 

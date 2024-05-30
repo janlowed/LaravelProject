@@ -1,4 +1,4 @@
-@extends('admin.dashboard')
+{{-- @extends('admin.dashboard')
 
 <head>
     <meta charset="UTF-8">
@@ -58,4 +58,4 @@
         </div>
     </main>
 </body>
-</html>
+</html> --}}
